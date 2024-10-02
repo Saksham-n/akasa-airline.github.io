@@ -1,43 +1,38 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akasa-Airline Application</title>
-    <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJ3Gq_woK4rbx6iyGpcNLtyaO4ks5dmUjDpw&s" type="image/png"> <!-- Favicon -->
+    <title>Akasa Airlines</title>
+    <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJ3Gq_woK4rbx6iyGpcNLtyaO4ks5dmUjDpw&s" type="image/png">
     <style>
+        .hidden {
+            display: none;
+        }
+
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
             margin: 0;
-            padding: 0;
-            background-color: #f5f8fa;
-            color: #333;
-            overflow-x: hidden; 
+            text-align: center;
         }
 
         header {
             background-color: #2b3e50;
             color: white;
-            padding: 20px 20px 20px 70px; 
-            text-align: center; 
+            padding: 20px;
+            text-align: center;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            position: relative; 
+            position: relative;
         }
 
         header img {
             position: absolute;
             left: 10px;
-            top: 15%;
+            top: 25%;
             transform: translateY(-50%);
             max-height: 50px;
-        }
-
-        h1 {
-            margin: 0;
-            font-size: 2.5em;
-            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
-            padding-left: 80px; 
         }
 
         nav ul {
@@ -45,15 +40,12 @@
             padding: 0;
             margin: 15px 0;
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
+            flex-wrap: wrap;
         }
 
         nav ul li {
-            display: inline-block;
-            margin: 10px 15px;
-            width: calc(25% - 30px);
-            text-align: center;
+            margin: 10px;
         }
 
         nav a {
@@ -63,7 +55,6 @@
             padding: 8px 12px;
             border-radius: 5px;
             transition: background-color 0.3s, transform 0.3s;
-            display: block;
         }
 
         nav a:hover {
@@ -72,271 +63,216 @@
             transform: scale(1.1);
         }
 
-        main {
-            padding: 20px;
-            max-width: 100%;
-            margin: auto;
-            overflow-x: hidden;
+        .login-container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            width: 400px;
+            transition: transform 0.2s;
+            margin-top: 50px;
         }
 
-        section {
-            margin-bottom: 30px;
-            padding: 20px;
-            background: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            border-left: 5px solid #ffc107;
+        .login-container:hover {
+            transform: scale(1.02);
         }
 
-        section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-        }
-
-        h2 {
-            font-size: 1.8em;
-            margin-top: 0;
-            color: #2b3e50;
-        }
-
-        button {
-            background-color: #009688;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1em;
-            transition: background-color 0.3s, transform 0.3s;
-        }
-
-        button:hover {
-            background-color: #00796b;
-            transform: scale(1.05);
-        }
-
-        select, textarea {
+        .login-button {
             width: 100%;
             padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin-top: 10px;
-            box-sizing: border-box;
-            font-size: 1em;
-            background-color: #f7f7f7;
+            background-color: #0079c1;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
         }
 
-        textarea {
-            height: 100px;
-            resize: none;
+        .login-button:hover {
+            background-color: #005f8d;
+        }
+
+        .scan-button {
+            background-color: #4CAF50;
+            padding: 10px 20px;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .scan-button:hover {
+            background-color: #45a049;
+        }
+
+        .scan-container {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px dashed #0079c1;
+            border-radius: 4px;
+            display: inline-block;
         }
 
         footer {
-            text-align: center;
-            padding: 15px;
-            background-color: #2b3e50;
-            color: white;
-            position: relative;
-            bottom: 0;
-            width: 100%;
+            margin-top: 15px;
+            font-size: 12px;
+            color: #777;
         }
 
-        .toast {
-            visibility: hidden;
-            min-width: 250px;
-            margin-left: -125px;
-            background-color: #009688;
-            color: #fff;
-            text-align: center;
-            border-radius: 5px;
-            padding: 16px;
-            position: fixed;
-            z-index: 1;
-            left: 50%;
-            bottom: 30px;
-            font-size: 17px;
+        footer p {
+            margin: 0;
         }
 
-        .toast.show {
-            visibility: visible;
-            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        /* Styles for the main content sections */
+        main section {
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
         }
 
-        @keyframes fadein {
-            from {bottom: 0; opacity: 0;}
-            to {bottom: 30px; opacity: 1;}
+        main section:hover {
+            transform: translateY(-5px);
         }
 
-        @keyframes fadeout {
-            from {bottom: 30px; opacity: 1;}
-            to {bottom: 0; opacity: 0;}
+        main section img {
+            max-width: 100px;
+            margin-bottom: 10px;
         }
 
+        /* Responsive Design for Smaller Screens */
         @media (max-width: 768px) {
-            nav ul li {
-                width: calc(50% - 20px);
-            }
-        }
-
-        @media (max-width: 480px) {
-            nav ul li {
-                width: calc(100% - 20px);
+            header img {
+                max-height: 40px;
+                left: 5px;
             }
 
-            h1 {
-                font-size: 2em;
+            nav ul {
+                flex-direction: column;
             }
 
-            h2 {
-                font-size: 1.5em;
-            }
-
-            button {
-                width: 100%;
+            .login-container {
+                width: 90%;
             }
         }
     </style>
 </head>
-
 <body>
-    <header>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/2/22/Akasa_Air_logo_with_slogan.png" alt="Akasa Air Logo">
-        <h1><u>Akasa Airways</u></h1>
-        <nav>
-            <ul>
-                <li><a href="#communication">Air Hostess Communication</a></li>
-                <li><a href="#food">In-Flight Food Ordering</a></li>
-                <li><a href="#direct-communication">Direct Communication</a></li>
-                <li><a href="#seat-exchange">Seat Exchange Facility</a></li>
-                <li><a href="#medical-assistance">Medical Assistance Notification</a></li>
-                <li><a href="#flight-status">Flight Status Update</a></li>
-                <li><a href="#entertainment">Entertainment Options</a></li>
-                <li><a href="#feedback">Feedback Options</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <main>
-        <section>
-            <img src="https://cdn-icons-png.flaticon.com/512/2636/2636632.png" alt="Air Hostess" style="max-width: 100px; float: right; margin-right: 25px;">
-            <h2 id="communication">Air Hostess Communication</h2>
-            <p>If you need any assistance, please click the button below to notify the air hostess.</p>
-            <button onclick="callAirHostess()">Call Air Hostess</button>
-        </section>
+    <!-- Main Features Section -->
+    <div id="main-content">
+        <header>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/22/Akasa_Air_logo_with_slogan.png" alt="Akasa Air Logo">
+            <h1><u>Akasa Airways</u></h1>
+            <nav>
+                <ul>
+                    <li><a href="#communication">Air Hostess Communication</a></li>
+                    <li><a href="#food">In-Flight Food Ordering</a></li>
+                    <li><a href="#direct-communication">Direct Communication</a></li>
+                    <li><a href="#seat-exchange">Seat Exchange Facility</a></li>
+                    <li><a href="#medical-assistance">Medical Assistance Notification</a></li>
+                    <li><a href="#flight-status">Flight Status Update</a></li>
+                    <li><a href="#entertainment">Entertainment Options</a></li>
+                    <li><a href="#feedback">Feedback Options</a></li>
+                </ul>
+            </nav>
+        </header>
 
-        <section>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnvbSVAh8Q3Tw28Ty7QVWlfofIYTTHBBNvAQ&s" 
-                style="max-width: 150px; float: right; margin-right: 10px;">
-            <h2>In-flight Food Menu</h2>
-            <p>Choose your meal:</p>
-            <select name="food" id="food">
-                <option value="chicken">Chicken Meal</option>
-                <option value="vegetarian">Vegetarian Meal</option>
-                <option value="seafood">Seafood Meal</option>
-                <option value="Vegan">Vegan Meal</option>
-            </select>
-            <br/><br/> 
-            <button onclick="orderFood()">Order Food</button>
-        </section>
-        
-                
-        
-
-        <section>
-            <img src="https://w7.pngwing.com/pngs/915/706/png-transparent-blue-call-icon-dialer-android-google-play-telephone-phone-blue-text-telephone-call.png"alt=" " style="max-width: 90px; float: right; margin-right: 30px;">
-            <h2 id="direct-communication">Direct Communication</h2>
-            <button onclick="makeCall()">Make Call</button>
-        </section>
-
-        <section>
-            <img src="data:image/png;base64,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"alt="" style="max-width: 100px; float: right; margin-right: 25px;">
-            <h2 id="seat-exchange">Seat Exchange Facility</h2>
-            <button onclick="requestSeatExchange()">Request Seat Exchange</button>
-        </section>
-
-        <section>
-            <img src="data:image/png;base64,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"alt=" " style="max-width: 100px; float: right; margin-right: 25px;">
-            <h2 id="medical-assistance">Medical Assistance Notification</h2>
-            <button onclick="notifyMedicalAssistance()">Notify Medical Assistance</button>
-        </section>
-
-        <section>
-            <img src="data:image/png;base64,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"alt="  " style="max-width: 100px; float: right; margin-right: 25px;">
-            <h2 id="flight-status">Flight Status Update</h2>
-            <button onclick="checkFlightStatus()">Check Flight Status</button>
-            <p id="flight-status-message">Flight Status: </p>
-        </section>
-
-        <section>
-            <img src="data:image/png;base64,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"alt=" " style="max-width: 100px; float: right; margin-right: 25px;">
-            <h2 id="entertainment">Entertainment Options</h2>
-            <button onclick="viewEntertainment()">View Entertainment Options</button>
-            <div id="entertainment-options" class="hidden">
-                <p>Movies, TV Shows, Music, Games, etc.</p>
-            </div>
-        </section>
+        <main>
+            <section>
+                <img src="https://cdn-icons-png.flaticon.com/512/2636/2636632.png" alt="Air Hostess">
+                <h2 id="communication">Air Hostess Communication</h2>
+                <p>If you need any assistance, click the button to notify the air hostess.</p>
+                <button onclick="callAirHostess()">Call Air Hostess</button>
+            </section>
 
             <section>
-                <img src="https://cdn-icons-png.freepik.com/512/8437/8437070.png" alt="Feedback Icon" style="max-width: 100px; float: right; margin-right: 25px;">
-                <h2 id="feedback">Feedback Options</h2>
-                <textarea id="feedback-text" placeholder="Enter your feedback"></textarea>
-                <button onclick="submitFeedback()">Submit Feedback</button>
+                <h2>In-Flight Food Menu</h2> 
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnvbSVAh8Q3Tw28Ty7QVWlfofIYTTHBBNvAQ&s" alt="Food Menu" style="width:200px;height:auto;">
+                <p>Choose your meal:</p>
+                <select name="food" id="food-menu"> 
+                    <option value="chicken">Chicken Meal</option>
+                    <option value="vegetarian">Vegetarian Meal</option>
+                    <option value="seafood">Seafood Meal</option>
+                    <option value="vegan">Vegan Meal</option>
+                </select>
+                <button onclick="orderFood()">Order Food</button>
             </section>
-        
-        
-    </main>
 
-    <footer>
-        &copy; 2024 Akasa-Airline Application
-    </footer>
+            <section>
+                <img src="https://w7.pngwing.com/pngs/915/706/png-transparent-blue-call-icon-dialer-android-google-play-telephone-phone-blue-text-telephone-call.png" alt="Direct Call">
+                <h2 id="direct-communication">Direct Communication</h2>
+                <button onclick="makeCall()">Make Call</button>
+            </section>
 
-    <div id="toast" class="toast">Action completed</div>
+            <section>
+                <img src="https://cdn-icons-png.flaticon.com/512/4225/4225827.png" alt="Seat Exchange" style="max-width: 100px;">
+                <h2 id="seat-exchange">Seat Exchange Facility</h2>
+                <button onclick="requestSeatExchange()">Request Seat Exchange</button>
+            </section>
+
+            <section>
+                <img src="https://cdn-icons-png.flaticon.com/512/3082/3082302.png" alt="Medical Assistance" style="max-width: 100px;">
+                <h2 id="medical-assistance">Medical Assistance Notification</h2>
+                <button onclick="notifyMedicalAssistance()">Notify Medical Assistance</button>
+            </section>
+
+            <section>
+                <img src="https://cdn-icons-png.flaticon.com/512/2268/2268180.png" alt="Flight Status" style="max-width: 100px;">
+                <h2 id="flight-status">Flight Status Update</h2>
+                <button onclick="checkFlightStatus()">Check Flight Status</button>
+                <p id="flight-status-message">Flight Status: </p>
+            </section>
+
+            <section>
+                <img src="https://cdn-icons-png.flaticon.com/512/3625/3625710.png" alt="Entertainment Options" style="max-width: 100px;">
+                <h2 id="entertainment">Entertainment Options</h2>
+                <button onclick="viewEntertainment()">View Entertainment Options</button>
+                <div id="entertainment-options" class="hidden"></div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 Akasa Airlines</p>
+        </footer>
+    </div>
 
     <script>
+        // Function to notify air hostess
         function callAirHostess() {
-            showToast("Air Hostess has been notified.");
+            alert("Air hostess has been notified.");
         }
 
+        // Function to handle in-flight food ordering
         function orderFood() {
-            const foodMenu = document.getElementById("food-menu");
-            document.getElementById("order-status").innerText = "You have ordered: " + foodMenu.value;
-            showToast("Food ordered: " + foodMenu.value);
+            const foodChoice = document.getElementById('food-menu').value; 
+            alert(`You have ordered: ${foodChoice}`);
         }
 
+        // Function to make a direct call
         function makeCall() {
-            showToast("Direct communication started.");
+            alert("Direct call initiated.");
         }
 
+        // Function to request seat exchange
         function requestSeatExchange() {
-            showToast("Seat exchange request sent.");
+            alert("Seat exchange requested.");
         }
 
+        // Function to notify for medical assistance
         function notifyMedicalAssistance() {
-            showToast("Medical assistance notified.");
+            alert("Medical assistance has been notified.");
         }
 
+        // Function to check flight status
         function checkFlightStatus() {
-            document.getElementById("flight-status-message").innerText = "Flight Status: On Time";
-            showToast("Checked flight status.");
+            document.getElementById('flight-status-message').textContent = "Flight is on time.";
         }
 
+        // Function to toggle and view entertainment options
         function viewEntertainment() {
-            const options = document.getElementById("entertainment-options");
-            options.classList.toggle("hidden");
-        }
-
-        function submitFeedback() {
-            const feedback = document.getElementById("feedback-text").value;
-            showToast("Feedback submitted. Thank you!");
-            document.getElementById("feedback-text").value = ""; 
-        }
-
-        function showToast(message) {
-            const toast = document.getElementById("toast");
-            toast.innerText = message;
-            toast.className = "toast show";
-            setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 3000);
+            document.getElementById('entertainment-options').classList.toggle('hidden');
         }
     </script>
 </body>
