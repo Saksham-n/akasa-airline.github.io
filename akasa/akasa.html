@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -142,6 +141,11 @@
             max-width: 100px;
             margin-bottom: 10px;
         }
+        .no-bullets {
+    list-style-type: none; 
+    padding-left: 0; 
+}
+
 
         /* Responsive Design for Smaller Screens */
         @media (max-width: 768px) {
@@ -157,6 +161,7 @@
             .login-container {
                 width: 90%;
             }
+
         }
     </style>
 </head>
@@ -234,14 +239,14 @@
                 
                 <div id="entertainment-options" class="hidden">
                     <h3>Available Entertainment</h3>
-                    <ul>
+                    <ul class="no-bullets">
                         <li><strong>Movies:</strong> Top Gun, Avatar, Inception</li>
                         <li><strong>TV Shows:</strong> Friends, The Office, Breaking Bad</li>
                         <li><strong>Music:</strong> Pop Hits, Classical, Jazz</li>
                         <li><strong>Games:</strong> Chess, Sudoku, Solitaire</li>
                     </ul>
                 </div>
-            </section>
+                
         </main>
 
         <footer>
