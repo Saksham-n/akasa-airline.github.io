@@ -7,9 +7,11 @@
     <title>Akasa Airlines</title>
     <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJ3Gq_woK4rbx6iyGpcNLtyaO4ks5dmUjDpw&s" type="image/png">
     <style>
-        .hidden {
-            display: none;
-        }
+
+.hidden {
+    display: none;
+}
+
 
         body {
             font-family: Arial, sans-serif;
@@ -229,7 +231,16 @@
                 <img src="https://cdn-icons-png.flaticon.com/512/3625/3625710.png" alt="Entertainment Options" style="max-width: 100px;">
                 <h2 id="entertainment">Entertainment Options</h2>
                 <button onclick="viewEntertainment()">View Entertainment Options</button>
-                <div id="entertainment-options" class="hidden"></div>
+                
+                <div id="entertainment-options" class="hidden">
+                    <h3>Available Entertainment</h3>
+                    <ul>
+                        <li><strong>Movies:</strong> Top Gun, Avatar, Inception</li>
+                        <li><strong>TV Shows:</strong> Friends, The Office, Breaking Bad</li>
+                        <li><strong>Music:</strong> Pop Hits, Classical, Jazz</li>
+                        <li><strong>Games:</strong> Chess, Sudoku, Solitaire</li>
+                    </ul>
+                </div>
             </section>
         </main>
 
@@ -271,9 +282,19 @@
         }
 
         // Function to toggle and view entertainment options
-        function viewEntertainment() {
-            document.getElementById('entertainment-options').classList.toggle('hidden');
-        }
+    function viewEntertainment() {
+    const entertainmentSection = document.getElementById('entertainment-options');
+    entertainmentSection.classList.toggle('hidden');
+
+    // Optional: Change button text based on visibility
+    const button = document.querySelector("button[onclick='viewEntertainment()']");
+    if (entertainmentSection.classList.contains('hidden')) {
+        button.textContent = "View Entertainment Options";
+    } else {
+        button.textContent = "Hide Entertainment Options";
+    }
+}
+
     </script>
 </body>
 </html>
